@@ -16,12 +16,12 @@ import Header from "../../components/Header";
 import { tokens } from "../../theme";
 import { formatDate } from "@fullcalendar/core";
 
-const Calendar = () => {
+function Calendar() {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [currentEvents, setCurrentEvents] = useState([]);
 
-    const handleDateClick = (selected) => {
+    function handleDateClick(selected) {
         const title = prompt("Please enter a new title for your event");
         const calendarApi = selected.view.calendar;
         calendarApi.unselect();
@@ -35,9 +35,9 @@ const Calendar = () => {
                 allDay: selected.allDay,
             });
         }
-    };
+    }
 
-    const handleEventClick = (selected) => {
+    function handleEventClick(selected) {
         if (
             window.confirm(
                 `Are you sure you want to delete the event '${selected.event.title}'`
@@ -45,7 +45,7 @@ const Calendar = () => {
         ) {
             selected.event.remove();
         }
-    };
+    }
 
     return (
         <Box m="20px">
@@ -127,6 +127,6 @@ const Calendar = () => {
             </Box>
         </Box>
     );
-};
+}
 
 export default Calendar;
